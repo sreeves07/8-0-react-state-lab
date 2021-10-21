@@ -1,10 +1,13 @@
 import React from "react";
-
 import "./App.css";
 
 class App extends React.Component {
   render() {
-    return "Hello, world!";
+    return (
+      <main>
+        <p>React State Lab</p>
+      </main>
+    );
   }
 }
 
