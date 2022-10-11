@@ -5,18 +5,14 @@ import "./App.css";
 function App () {
   const [currentScore, setCurrentScore] = useState(0);
   const [buttonScore, setButtonScore] = useState(1);
-  const [isGameOver, setIsGameOver] = useState(false);
+  
   const playAgain = () => {
-    setIsGameOver(false);
     setCurrentScore(0);
     setButtonScore(1);
   }
-  const addOne = () => {
-    if(currentScore + buttonScore >= 100) {
-      setIsGameOver(true);
-    }       
-    setCurrentScore(currentScore + buttonScore);
 
+  const addOne = () => {    
+    setCurrentScore(currentScore + buttonScore);
   }
 
   const changeButtonIncrement = () => {
@@ -28,25 +24,74 @@ function App () {
     }
 
   }
-  
-return (
-<>
-      <h2>{'Current Score: ' + currentScore}</h2>
+  if (currentScore >= 100) {
+    return (
+      <div>
+        <h2>You Win!</h2>
+        <button onClick={playAgain}>Play again?</button>
+      </div>
+    );
+  }
+  return (
+    <div>
+      <main>
+        <div>
+          <h1>Current Score: {currentScore}</h1>
+        </div>
+        <div>
+          <button onClick={addOne}>+{buttonScore}</button>
+        </div>
 
-      {isGameOver ? (
-      <>
-      <h2>{'You Win!'}</h2>
-      <br></br><br></br>
-      <button onClick={playAgain}>{'Play again?'}</button>
-      </>
-
-  ) : (
-    <>
-      <button onClick={addOne}>{`+${buttonScore}`}</button>
-      <br></br><br></br>
-      <button onClick={changeButtonIncrement}>{`Pay 10 points to change from +${buttonScore} to +${buttonScore + 1} `}  </button>
-    </>)} 
-</>)
+        <div>
+          <button onClick={changeButtonIncrement}>
+            {`Pay 10 points to change from +${buttonScore} to +${buttonScore + 1}`}
+          </button>
+        </div>
+      </main>
+    </div>
+  );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   if (currentScore >= 100) {
+//     return (
+//       <div>
+//             <h2>{'You Win!'}</h2>
+//             <br></br><br></br>
+//             <button onClick={playAgain}>{'Play again?'}</button>
+//         </div>
+      
+//         )
+//   }
+//  return (
+//   <div>
+//     <main>
+//       <div>
+//         <h1>{`Current Score: ${currentScore}`}</h1>
+//       </div>
+//       <div>
+//         <button onClick={addOne}>{`+${buttonScore}`}</button>
+//       </div>
+//       <div>
+//       <button onClick={changeButtonIncrement}>{`Pay 10 points to change from +${buttonScore} to +${buttonScore + 1} `}  </button>
+//       </div>
+//     </main>
+// )
+// </div>
+
+// }
 
 export default App;
